@@ -1,3 +1,5 @@
+# Vised Marks
+
 The vised_marks extension for EEGLAB adds editing functions to the native eegplot 
 data scrolling figure. Specifically, it allows adding/editing event markers, flagging 
 channels/components, flagging time periods and displaying the 
