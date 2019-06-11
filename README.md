@@ -10,7 +10,7 @@ detection then concatenating the data back into a continuous form while storing 
 rejection information in the "marks" structure.
 
 Code initially designed and written by James A. Desjardins (SHARCNET) with contributions
-from Andrew Lofts, Allan Campopiano, Brad Kennedy and Mike Cichonski supported by 
+from Andrew Lofts, Allan Campopiano, Mae Kennedy and Mike Cichonski supported by 
 NSERC to Sidney J. Segalowitz at the Jack and Nora Walker Centre for Lifespan Development 
 Research (Brock University), Brain Canada funding to Alan C. Evans at the Montreal 
 Neurological Institute and Hospital (McGill University), and a Dedicated Programming 
