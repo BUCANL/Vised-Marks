@@ -65,6 +65,14 @@
 
 function version = eegplugin_vised_marks(fig, try_strings, catch_strings)
 
+% Warn for pathing issues if need be...
+folders = dir('./plugins/');
+for i=1:length(folders)
+    if strcmp(folders(i).name,'VisEd1.05')
+        warning('Potential conflicts in function calls. Both VisEd and VisedMarks installed.');
+    end
+end
+
 version = get_version('vised_marks', 'vised_marks1.0.0');
 %% start up
 addpath(genpath(fileparts(which('eegplugin_vised_marks.m'))));
