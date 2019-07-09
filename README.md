@@ -9,6 +9,11 @@ This extension also provides tools for epoching the data for artifact
 detection then concatenating the data back into a continuous form while storing the 
 rejection information in the "marks" structure.
 
+## Contact us
+Please see the [Contact Us](https://github.com/BUCANL/Vised-Marks/wiki/Contact-Us) page if you have any questions.
+
+## Attribution
+
 Code initially designed and written by James A. Desjardins (SHARCNET) with contributions
 from Andrew Lofts, Allan Campopiano, Mae Kennedy and Mike Cichonski supported by 
 NSERC to Sidney J. Segalowitz at the Jack and Nora Walker Centre for Lifespan Development 
