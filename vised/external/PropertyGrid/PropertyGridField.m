@@ -62,9 +62,6 @@ classdef PropertyGridField < hgsetget
         
         function self = set.Category(self, category)
             validateattributes(category, {'char'}, {'nonempty','row'});
-            if strcmp(category(1),' ')
-                category = category(2:1:end);
-            end;
             self.Category = category;
         end
         
@@ -170,7 +167,7 @@ classdef PropertyGridField < hgsetget
         %    hu.bme.aut.www (not a direct child)
             names = getclassfield(selfarray, 'Name');
             if iscell(filterprefix)
-                prefix = [pg_strjoin('.', filterprefix) '.'];
+                prefix = [strjoin('.', filterprefix) '.'];
             else
                 prefix = [filterprefix '.'];
             end

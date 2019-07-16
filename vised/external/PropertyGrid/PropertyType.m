@@ -47,9 +47,7 @@ classdef PropertyType
             end
             if ~isempty(self.Domain)
                 if iscellstr(self.Domain)
-
-                    s = [s ' ' pg_strjoin(',', self.Domain)];
-
+                    s = [s ' ' strjoin(',', self.Domain)];
                 elseif isnumeric(self.Domain)
                     s = [s ' ' mat2str(self.Domain)];
                 end
@@ -286,9 +284,7 @@ classdef PropertyType
                                 javavalue = mat2str(value);
                             end
                         case 'cellstr'
-
-                            javavalue = java.lang.String(pg_strjoin(sprintf('\n'), value));
-
+                            javavalue = java.lang.String(strjoin(sprintf('\n'), value));
                         case 'logical'
                             if ~isempty(self.Domain)
                                 javavalue = javaStringArray(self.Domain(value));  % value is an indicator vector
@@ -344,7 +340,7 @@ classdef PropertyType
                                 return;
                             end
                         case 'cellstr'
-                            value = pg_strsplit(javavalue);
+                            value = strsplit(javavalue);
                         case 'logical'
                             if ~isempty(self.Domain)
                                 value = strsetmatch(cell(javavalue), self.Domain);

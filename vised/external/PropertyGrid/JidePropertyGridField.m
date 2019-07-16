@@ -132,9 +132,7 @@ classdef JidePropertyGridField < handle
 
         function self = FindByName(selfarray, name)
         % Finds the property field with the given name in an array.
-
-            self = selfarray.FindByNameRecurse(pg_strsplit(name, '.'));
-
+            self = selfarray.FindByNameRecurse(strsplit(name, '.'));
         end
 
         function properties = GetProperties(selfarray)

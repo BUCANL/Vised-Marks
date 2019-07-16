@@ -68,9 +68,7 @@ else
     % help text
     rgb = get(fig, 'Color');
     text = cellfun(@(line) helpdialog_html(line), text, 'UniformOutput', false);
-
-    html = ['<html>' pg_strjoin(sprintf('\n'), text) '</html>'];
-
+    html = ['<html>' strjoin(sprintf('\n'), text) '</html>'];
     jtext = javax.swing.JLabel(html);
     jcolor = java.awt.Color(rgb(1), rgb(2), rgb(3));
     jtext.setBackground(jcolor);
@@ -112,6 +110,4 @@ if ~isempty(ix)
     line = [ line(1:ix-1) regexprep(line(ix:end), '(\w[\d\w]+)', '<a href="matlab:helpdialog $1">$1</a>') ];
 end
 
-
 html = ['<p>' leadingspace line '</p>'];
-
