@@ -66,6 +66,17 @@
 function version = eegplugin_vised_marks(fig, try_strings, catch_strings)
 
 version = get_version('vised_marks', 'vised_marks1.0.0');
+
+% Removing the code found in the following if-statement will alow for
+% multiple copies of PropertyGrid to be in the Matlab path. This has been
+% known to cause issues inside of EEGLAB. If there are any compatability
+% issues please contact us.
+if exist('PropertyGrid')
+    warning('PropertyGrid was already found. Overwriting path with VisedMarks version.');
+    rmStr = which('PropertyGrid');
+    rmpath(fileparts(rmStr));
+end
+
 %% start up
 addpath(genpath(fileparts(which('eegplugin_vised_marks.m'))));
 
@@ -81,8 +92,8 @@ VisEd_cmd='[EEG,LASTCOM] = pop_vised(EEG,''pop_gui'',''on'');';
 finalcmdVE=[try_strings.no_check VisEd_cmd catch_strings.add_to_hist];
 
 %CONFIG
-uimenu(filemenu, 'Label', 'Vised configuration','separator','on', ...
-                 'callback','vised_config=pop_edit_vised_config;');
+uimenu(filemenu, 'Label', 'Vised configuration','separator','off', ...
+                 'callback','vised_config=pop_edit_vised_config;','position',length(filemenu.Children) - 2);
              
 % add "Visual edit" submenu to the "Edit" menu.
 %--------------------------------------------------------------------

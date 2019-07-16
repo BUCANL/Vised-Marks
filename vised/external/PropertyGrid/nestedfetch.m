@@ -21,9 +21,7 @@
 % Copyright 2010 Levente Hunyadi
 function value = nestedfetch(obj, name)
     if ~iscell(name)
-
-        nameparts = pg_strsplit(name, '.');
-
+        nameparts = strsplit(name, '.');
     else
         nameparts = name;
     end

@@ -6,10 +6,10 @@
 % adjoiner:
 %    string separating each neighboring element
 %
-% See also: pg_strjoin
+% See also: strjoin
 
 % Copyright 2008-2009 Levente Hunyadi
-function strings = pg_strsplit(string, adjoiner)
+function strings = strsplit(string, adjoiner)
 
 if nargin < 2
     adjoiner = sprintf('\n');
