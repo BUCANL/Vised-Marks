@@ -100,8 +100,13 @@ VisEd_cmd='[EEG,LASTCOM] = pop_vised(EEG,''pop_gui'',''on'');';
 finalcmdVE=[try_strings.no_check VisEd_cmd catch_strings.add_to_hist];
 
 %CONFIG
+try
 uimenu(filemenu, 'Label', 'Vised configuration','separator','off', ...
                  'callback','vised_config=pop_edit_vised_config;','position',length(filemenu.Children) - 2);
+catch
+    uimenu(filemenu, 'Label', 'Vised configuration','separator','off', ...
+                 'callback','vised_config=pop_edit_vised_config;');
+end
              
 % add "Visual edit" submenu to the "Edit" menu.
 %--------------------------------------------------------------------
