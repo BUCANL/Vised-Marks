@@ -11,7 +11,7 @@ rejection information in the "marks" structure.
 # Documentation
 This plugin is part of BUCANL's [Lossless](https://github.com/BUCANL/BIDS-Lossless-EEG) EEG pipeline. As part of this, all tutorials and documentation are written using the Face13 dataset. Instructions on how to download and initialize this data can be found, [here](https://github.com/BUCANL/BIDS-Init-Face13-EEGLAB).
 
-The reference manual for this plugin can be found on this repository's accompanying wiki page, [here](https://github.com/BUCANL/Vised-Marks/wiki).
+The reference manual for this plugin can be found on this repository's accompanying [wiki](https://github.com/BUCANL/Vised-Marks/wiki) page.
 
 A tutorial with examples using the Face13 data can be found, [here](https://bucanl.github.io/SDC-VISED-MARKS/).
 
