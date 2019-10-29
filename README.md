@@ -22,6 +22,13 @@ This plugin can be installed with the plugin manager via EEGLAB. Additionally it
 git clone https://github.com/BUCANL/Vised-Marks.git
 ```
 
+# :warning: Set Up Figure Renderer :warning:
+Depending on your operating system and the default setting you are using you may need to type the following code into your MATLAB command window before each session. It mostly appears to be required when running MATLAB versions earlier than 2014b. This will ensure that the plots will open correctly, and you can avoid this error.
+
+```matlab
+set(0, 'DefaultFigureRenderer', 'OpenGL')
+```
+
 # Contact us
 Please see the [Contact Us](https://github.com/BUCANL/Vised-Marks/wiki/Contact-Us) page if you have any questions.
 
