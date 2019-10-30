@@ -1,5 +1,14 @@
 % ADAPTED FROM eeg_regepochs()
 
+% Optional inputs:
+%     'recurrence' - [in s] the regular recurrence interval of the dummy
+%                    events used as time-locking events for the 
+%                    consecutive epochs {default: 1 s}
+%     'limits'     - [minsec maxsec] latencies relative to the time-locking
+%                    events to use as epoch boundaries. Stated epoch length 
+%                    will be reduced by one data point to avoid overlaps 
+%                    {default: [0 recurrence_interval]}
+
 % See also: pop_editeventvals(), pop_epoch(), rmbase();
 %
 % Authors: Hilit Serby, Arnaud Delorme & Scott Makeig, SCCN/INC/UCSD, Sep 02, 2005
@@ -96,6 +105,7 @@ if EEG.srate*g.limits(2)~=round(EEG.srate*g.limits(2));
 end
 tmpevt=g.eventtype;
 
+% Ensure that dummy event label is unique
 if ~isempty(EEG.event);
     while any(strcmp(tmpevt,unique({EEG.event.type})));
         tmpevt=[tmpevt,'X'];

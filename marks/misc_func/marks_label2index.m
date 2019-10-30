@@ -1,3 +1,18 @@
+% Returns an array of either the flag values for a particular label type, 
+% or the indices of the flag values that are equal to 1 (or greater than 
+% zero in the case of a continuous mark), or the indices of the boundaries 
+% where the specified mark changes from 0 to 1 or vice versa.
+
+% Arguments
+%   marks_struct - Reference to which marks struct. (e.g. EEG.marks.time_info)
+%   labels       - Cell of strings of which labels to consider
+%   out_type     - String; one of: flags, indexes, bounds
+
+% Optional arguments
+%   invert - String; one of: on, off. If on, the inverse of the query
+%   exact  - String; one of: on, off. If on, labels argument must exactly match 
+
+
 function out_array=marks_label2index(marks_struct,labels,out_type,varargin)
 
 %% INITIATE VARARGIN STRUCTURES...
@@ -70,28 +85,6 @@ for i=1:length(flagind);
             flagscat(i,:,:)=squeeze(any(marks_struct(flagind(i)).flags,2));
         end
 end
-
-% OLD
-%%%%%%%%%%%%%%%%%%%%%%%
-% % for i=1:length(labels);
-% % 
-% %      
-% %     for ii=1:length(flagind);     
-% %         if length(size(marks_struct(flagind(ii)).flags))==2;
-% %             if isempty(marks_struct(flagind(ii)).flags)
-% %                 marks_struct(flagind(ii)).flags=zeros(size(marks_struct(flagind(max(notempty_ind))).flags));
-% %             end
-% %             flagscat(i,:)=marks_struct(flagind(ii)).flags;
-% %         elseif length(size(marks_struct(flagind(ii)).flags))==3;
-% %             if isempty(marks_struct(flagind(ii)).flags)
-% %                 marks_struct(flagind(ii)).flags=zeros(size(marks_struct(flagind(max(notempty_ind))).flags));
-% %             end
-% %             flagscat(i,:,:)=squeeze(any(marks_struct(flagind(ii)).flags,2));
-% %         end
-% %     end
-% % end
-
-
 
 flags=any(flagscat,1);
 if strcmp(g.invert,'on')

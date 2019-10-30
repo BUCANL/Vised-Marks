@@ -21,20 +21,6 @@ switch movetype
             EEG.chanlocs(EEG.nbchan).labels=EEG.marks.time_info(i).label;
         end
         
-%        for i=1:length(EEG.marks.chan_info)
-%            disp(['Appending ''',EEG.marks.chan_info(i).label, ''' flags to data array...']);
-%            EEG.pnts=EEG.pnts+1;
-%            EEG.data(:,EEG.pnts,:)=EEG.marks.chan_info(i).flags;
-%        end
-        
-%        ncomp=min(size(EEG.icaweights));
-%        for i=1:length(EEG.marks.comp_info)
-%            disp(['Appending ''',EEG.marks.comp_info(i).label, ''' flags to data array...']);
-%            EEG.pnts=EEG.pnts+1;
-%            EEG.data(:,EEG.pnts,:)=EEG.marks.chan_info(i).flags;
-%            EEG.chanlocs(EEG.pnts).labels=EEG.marks.chan_info(i).label;
-%        end
-        
     case 2
         if ~isfield(EEG,'marks')
             EEG=marks_init(EEG);
