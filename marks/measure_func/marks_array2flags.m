@@ -1,3 +1,66 @@
+% This function takes an array typically created by chan_variance or
+% chan_neighbour_r and marks either periods of time or sources as outliers.
+% Often these discovered time periods are artefactual and are  marked as such.
+%
+% An array of values representating the distribution of values inside an
+% epoch are passed to the function. Next, these values are put through one
+% of three outlier detection schemes. Epochs that are outliers are marked
+% as 1's and are 0 otherwise in a second data array. This array is then
+% averaged column-wise or row-wise. Column-wise averaging results in
+% flagging of time, while row-wise results in rejection of sources. This
+% averaged distribution is put through another round of outlier detection.
+% This time, if data points are outliers, they are flagged.
+% 
+% Output:
+% outarray - Mask of periods of time that are flagged as outliers
+% outind   - Array of 1's and 0's. 1's represent flagged sources/time. 
+%            Indices are only flagged if out_dist array fall above a second
+%            outlier threshhold.
+% out_dist - Distribution of rejection array. Either the mean row-wise or
+%            column-wise of outarray.
+%
+% Input:
+% inarray - Data array created by eiether chan_variance or chan_neighbour_r
+% 
+% Varargs:
+% init_dir     - String; one of: 'pos', 'neg', 'both'. Allows looking for
+%                unusually low (neg) correlations, high (pos) or both.
+% flag_dim     - String; one of: 'col', 'row'. Col flags time, row flags 
+%                sources.
+% init_method  - String; one of: 'q', 'z', 'fixed'. See method section. 
+% init_vals    - See method section.
+% init_crit    - See method section.
+% flag_method  - String; one of: 'q', 'z', 'fixed'. See method section.
+%                Second pass responsible for flagging aggregate array.
+% flag_vals    - See method section. Second pass for flagging.
+% flag_crit    - See method section. Second pass for flagging.
+% plot_figs    - String; one of: 'on', 'off'.
+% title_prefix - String prefix to add to each figure.
+% trim         - Numerical value of trimmed mean and std. Only valid for z.
+%
+% Methods:
+% fixed - This method does no investigation if the distribution. Instead
+%         specific criteria are given via vals and crit. If fixed
+%         is selected for the init_method option, only init_vals should be
+%         filled while init_crit is to be left empty. This would have the
+%         effect of marking some interval, e.g. [0 50] as being an outlier.
+%         If fixed is selected for flag_method, only flag_crit should be
+%         filled. This translates to a threshhold that something must pass
+%         to be flagged. i.e. if 0.2 (20%) of channels are behaving as
+%         outliers, then the period of time is flagged. Conversely if
+%         flag_dim is row, if a source is bad 20% of the time it is marked
+%         as a bad channel.
+% 
+% q     - Quantile method. init_vals allows for the specification of which
+%         quantiles to use, e.g. [.3 .7]. When using flag_vals only specify
+%         one quantile, e.g [.7]. The absolute difference between the
+%         median and these quantiles returns a distance. init_crit and
+%         flag_crit scales this distance. If values are found to be outside
+%         of this, they are flagged.
+% 
+% z     - Typical Z score calculation for distance. Vals and crit options
+%         not used for this methodology. See trim option above for control.
+
 function [outarray,outind,out_dist]=marks_array2flags(inarray,varargin)
 
 %% handle varargin

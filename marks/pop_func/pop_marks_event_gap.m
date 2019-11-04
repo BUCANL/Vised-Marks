@@ -1,3 +1,40 @@
+% This function seeks to mark periods of time based on event distances.
+% These distances can be relative to one another, or the lack of events
+% after periods of time.
+%
+% Output:
+% EEG - Standard EEG structure with new mark
+% com - Command for EEG.history
+% 
+% Input:
+% EEG         - Standard EEG structure
+% event_type  - Cell array of strings. If exact is off, used for pattern matching
+% crit_dur_ms - Integer in ms. Duration marks must respect. Based on other options
+%               marks must be within or outside this duration.
+% new_label   - String new mark name
+% new_color   - Array size 3 for color, e.g. [0.5 0.5 0.5]
+% 
+% Varargs:
+% exact        - String; one of: 'on', 'off'. If off, pattern matching can
+%                be used based on mark_label.
+% ref_point    - String; one of: 'both', 'first', 'second'. Controls
+%                offsets argument.
+% offsets      - Array size two (e.g. [-1 1]). Allows for marking outside
+%                of gaps. This is done relative to the reference point.
+%                In the case of the ref_point being 'both' the first
+%                element is the offset backwards in time, the second is
+%                forward in time.
+% invert_flags - String; one of: 'on', 'off'. Invert selection.
+% critdir      - String; one of: 'max', 'min'. If max, after an event,
+%                there must be another event within crit_dur_ms. Otherwise
+%                time is then flagged. If min, after an event, if another
+%                event fires before crit_dur_ms has finished, time is then
+%                marked.
+% interval     - Either 'off', or an ordered cell array representing the
+%                start and stop points of some interval. Can be used to
+%                mark rest or break periods inside of a task. Elements of
+%                the ordered cell array must be the same as event_type.
+
 function [EEG,com]=pop_marks_event_gap(EEG,event_type,crit_dur_ms,new_label,new_color,varargin)
 
 com = ''; % this initialization ensure that the function will return something

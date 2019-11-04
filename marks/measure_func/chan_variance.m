@@ -1,3 +1,20 @@
+% This function creates data arrays from an epoched EEG structure to eventually
+% be flagged by the marks_array2flags function.
+% Output:
+% EEG - EEG Structure
+% data_sd - Data array for further processing
+% Input:
+% EEG - Standard EEG structure
+% 'datafield'  - If 'data' is pair, output array is created with EEG data. 
+%                Otherwise, it is created via ICA data
+% 'epoch_inds' - Array of 1's and 0's marking epochs to consider. Typically
+%                this array is created via marks_label2index.
+% 'plot_figs'  - String; one of: 'on', 'off'. Default off.
+% 'varmeasure' - String; one of: 'sd', 'absmean', 'spect'. Methodology for
+%                value that will represent the epoch.
+% 'detrending' - String; one of: 'on', 'off'. Detrend epochs.
+% 'spectrange' - Array of double, length 2. e.g. [0 7].
+%                Only valid for varmeasure spect.
 function [EEG,data_sd]=chan_variance(EEG,varargin)
 
 g=struct(varargin{:});

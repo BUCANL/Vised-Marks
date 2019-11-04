@@ -1,3 +1,25 @@
+% This function computes the correlation matricies to be passed to markup functions
+% to either reject periods of time or individual sources.
+% 
+% Output:
+% EEG         - Standard EEG structure
+% m_neighbr_r - Data array to pass to flagging function
+% chandist    - Matrix storing distance between channels
+% y           - Sorted list of channel distances
+% chan_win_sd - Std of EEG.data for quick use (not really necessary)
+% 
+% Input:
+% EEG     - Standard EEG structure 
+% nneigbr - Number of neighbours to compare in open interval
+% method  - String; one of: 'max', 'mean', 'trimmean'. This is the function
+%           which aggregates the neighbours into one value.
+% 
+% Vararg:
+% chan_inds  - Arrau pf 1's and 0's marking which channels to consider. See epoch_inds.
+% epoch_inds - Array of 1's and 0's marking epochs to consider. Typically
+%              this array is created via marks_label2index.
+% plot_figs  - String; one of: 'on', 'off'.
+
 function [EEG,m_neigbr_r,chandist,y,chan_win_sd]=chan_neighbour_r(EEG,nneigbr,method,varargin)
 
 g=struct(varargin{:});

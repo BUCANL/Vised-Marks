@@ -1,3 +1,26 @@
+% Reduces the given EEG structure to a subset of the whole dataset based on
+% mark structure queries. Typically used to purge: time, components, and
+% channels. Can also be used to select given portions of the data.
+% 
+% Output:
+% EEG - New EEG structure.
+% com - EEG.history output
+% 
+% Input:
+% EEG      - Standard EEG structure
+% infotype - String; one of: 'time_info', 'comp_info', 'chan_info'
+% indexes  - Typically kept empty if using the marks structure to select
+%            data. Otherwise allows for further subselection of time
+%            periods.
+%
+% Varargs:
+% labels - Cell array of Strings; which marks labels inside of infotype to
+%          reduce the data by.
+% exact  - String; one of: 'on', 'off'. If off, allows for pattern matching
+% remove - String; one of: 'on', 'off'. If on, EEG structure is reduced
+%          based on labels queries.
+% gui    - String; one of: 'on', 'off'
+
 function [EEG,com]=pop_marks_select_data(EEG,infotype,indexes,varargin)
 
 com = ''; % this initialization ensure that the function will return something

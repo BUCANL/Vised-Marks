@@ -1,3 +1,21 @@
+% Function which takes a variable amount of marks structures and merges
+% them into a targeted mark. Typically this is used to merge all
+% artefactual labels into a single annotation representing rejected time
+% across all reasons.
+%
+% Output:
+% EEG - Standard EEG structure with marks structure modified
+% com - Command ran for the purposes of EEG.history
+%
+% Input:
+% EEG      - Standard EEG structure
+% infotype - String; one of: 'time_info', 'chan_info', 'comp_info'
+% labels   - Cell array of strings to be merged.
+% 
+% Varargs:
+% target_label - String; which label are marks merged into. Default is
+%                manual.
+
 function [EEG,com]=pop_marks_merge_labels(EEG,infotype,labels,varargin)
 
 com = ''; % this initialization ensure that the function will return something

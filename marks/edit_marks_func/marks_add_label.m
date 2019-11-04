@@ -1,3 +1,21 @@
+% This function creates a given mark and returns the entire mark structure
+% modified to include it.
+% Output:
+% marks_struct - Modified marks structure. Use this to write to EEG.marks
+% Input:
+% marks_struct - Reference to current marks structure. Typically EEG.marks
+% info_type    - String; one of: 'chan_info', 'comp_info', 'time_info'
+% mark_prop    - Cell array of options to create a mark. Order MATTERS.
+%                ORDER FOR CHAN/COMP
+%                label=mark_prop{1};
+%                line_color=mark_prop{2};
+%                tag_color=mark_prop{3};
+%                order=mark_prop{4};
+%                flags=mark_prop{5};
+%                ORDER FOR TIME:
+%                label=mark_prop{1};
+%                line_color=mark_prop{2};
+%                flags=mark_prop{3};
 function marks_struct = marks_add_label(marks_struct,info_type,mark_prop)
 
 if isempty(marks_struct)

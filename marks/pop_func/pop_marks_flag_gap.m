@@ -1,3 +1,33 @@
+% This function searches a given mark and looks for gaps smaller than a given
+% size and creates a new annotation that 'marks' these gaps. This is then
+% used to search for epochs of time that are too small to consider for artefact
+% rejection techniques. By merging the newly created mark into the manual mark
+% these small periods of time can be rejected.
+% 
+% Output:
+% EEG - Standard EEG structure.
+% com - Command that was run for EEG.history to display
+% 
+% Input:
+% EEG         - Standard EEG structure
+% mark_label  - Cell array of String; Mark that is current being
+%               investigated.
+% crit_dur_ms - Minimum amount of time that must exist between blocks
+% new_label   - String; label
+% new_color   - Array size 3; e.g. [0.5 0.5 0.5]
+% 
+% Vararg:
+% exact        - String; one of: 'on', 'off'. If off, pattern matching can
+%                be used based on mark_label.
+% ref_point    - String; one of: 'both', 'first', 'second'. Controls
+%                offsets argument.
+% offsets      - Array size two (e.g. [-1 1]). Allows for marking outside
+%                of gaps. This is done relative to the reference point.
+%                In the case of the ref_point being 'both' the first
+%                element is the offset backwards in time, the second is
+%                forward in time.
+% invert_flags - String; one of: 'on', 'off'. Invert selection.
+
 function [EEG,com]=pop_marks_flag_gap(EEG,mark_label,crit_dur_ms,new_label,new_color,varargin)
 
 com = ''; % this initialization ensure that the function will return something

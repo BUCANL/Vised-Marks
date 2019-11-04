@@ -1,3 +1,6 @@
+% Function which given an array 'flags' of values, prepends and appends a value
+% around a given nonzero block of data in the given array.
+% This value can be customized via the vararg 'value'. (e.g. 'value',0.5)
 function flags=padflags(EEG,flags,npad,varargin)
 
 g=struct(varargin{:});
